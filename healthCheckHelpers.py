@@ -6,6 +6,11 @@ ByteMultiplier = {
 	"G": 1024*1024*1024
 }
 
+def get_update_rule(w1 = 0.5,w2 = 0.5):
+	probability = w2//(w1+w2)
+	rule = "iptables -t mangle -R PREROUTING 4 -m statistic --mode random --probability %s -j MARK --set-mark 20"%(probability)
+	return rule
+
 # data format :-- Totalsendrate:3.36KB3.36KB3.36KB
 def sendAndRecParser(data):
 	val = data.split(':')[1].split('B')[0]
