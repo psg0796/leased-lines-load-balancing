@@ -1,5 +1,5 @@
 import os
-
+import time
 ByteMultiplier = {
 	"K": 1024,
 	"M": 1024*1024,
@@ -47,7 +47,33 @@ def sendAndRecCheck(interface):
 		return sendAndRecParser(send),sendAndRecParser(rec)
 	return 0,0
 
+def get_bytes(t, iface='wlp3s0'):
+    with open('/sys/class/net/' + iface + '/statistics/' + t + '_bytes', 'r') as f:
+        data = f.read()
+    return int(data)
+
+def rxtx(interface):
+    (tx_prev, rx_prev) = (0, 0)
+    while(True):
+        tx = get_bytes('tx', interface)
+        rx = get_bytes('rx', interface)
+        if tx_prev > 0:
+            tx_speed = tx - tx_prev
+            # print('TX: ', tx_speed, 'bps')
+
+        if rx_prev > 0:
+            rx_speed = rx - rx_prev
+            # print('RX: ', rx_speed, 'bps')
+            break
+
+        time.sleep(1)
+    
+
+        tx_prev = tx
+        rx_prev = rx
+    return tx_speed,rx_speed
+
 def checkInterface(interface):
-	send,rec = sendAndRecCheck(interface)
+	send,rec = rxtx(interface)
 	aggrInterfaceScore = send + rec + 1e-9
 	return aggrInterfaceScore
