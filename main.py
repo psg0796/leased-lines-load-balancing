@@ -33,9 +33,10 @@ def getIpReqst(timeDuration):
 
 def main():
 	checks = healthCheck(interfaces)
-	ipReqst = getIpReqst(10)
+	score = checks[0]/(sum(checks))
+	# ipReqst = getIpReqst(10)
 
-	groupedList = group(ipReqst, checks, len(interfaces))
+	# groupedList = group(ipReqst, checks, len(interfaces))
 	changeIpRules(groupedList)
 	
 
