@@ -1,45 +1,27 @@
-import healthCheckHelpers
-
-interfaces = {
-	'0': 'enp2s0',
-	'1': 'wlp1s0'
-}
-
+import utils
+import os
 
 def healthCheck(interfaces):
 	checks = []
 
 	for interface in interfaces:
-		checks.append(healthCheckHelpers.checkInterface(interface))
+		checks.append(utils.checkInterface(interface))
 
 	return checks
 
-
-# ipReqstList format :-- [(ipAddress, num of requests made)]
-# Sarthak
-def group(ipReqstList, checks, numOfGroups):
-
-	return groupedList
-
-# Nadeem
-def changeIpRules(groupedList):
-	# logic for changing ip rules
-
-
-def getIpReqst(timeDuration):
-	ipReqstGrps = []
-	return ipReqstGrps
-
+def changeIpRules(c1, c2):
+	utils.get_update_rule(c1, c2)
 
 def main():
-	checks = healthCheck(interfaces)
-	score = checks[0]/(sum(checks))
-	# ipReqst = getIpReqst(10)
-
-	# groupedList = group(ipReqst, checks, len(interfaces))
-	changeIpRules(groupedList)
-	
-
+	shouldStartScript = input("Please check and set the environment variables in file define_variable.sh carefully and press 1 to continue else press any number to exit ?\n")
+	if(shouldStartScript == '1'):
+		os.popen(". ./define_variable.sh")
+		interfaces = [os.environ['IF1'], os.environ['IF2']]
+		print(interfaces)
+		checks = healthCheck(interfaces)
+		changeIpRules(checks[0], checks[1])
+	else:
+		exit()
 
 if __name__ == '__main__':
 	main()

@@ -1,8 +1,9 @@
-IF1 = # nic name of isp1
-IF2 = # nic name of isp2
+#!/bin/sh
+export IF1=enp2s0 # nic name of isp1
+export IF2=enp2s0 # nic name of isp2
 
-IP1 = #IP address associated with IF1
-IP2 = #IP address associated with IF2
+# export IP1 = #IP address associated with IF1
+# export IP2 = #IP address associated with IF2
 
-P1 = #IP address of the gateway at Provider 1
-P2 = #IP address of the gateway at Provider 2
+# export P1 = #IP address of the gateway at Provider 1
+# export P2 = #IP address of the gateway at Provider 2
