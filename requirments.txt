@@ -1,0 +1,13 @@
+
+Software:
+	linux with root access and having
+		iptables
+		ip route
+		python 3 with
+			locust
+
+Hardware:
+	PC with atleast 3 NIC.
+	It is recommended to have:
+		16GB RAM or more
+		i7-7700HQ or better 
