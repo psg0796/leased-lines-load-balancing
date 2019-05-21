@@ -1,6 +1,6 @@
 #!/bin/sh
-export IF1=enp2s0 # nic name of isp1
-export IF2=enp2s0 # nic name of isp2
+export IF1=enp0s31 # nic name of isp1
+export IF2=enp0s3 # nic name of isp2
 
 # export IP1 = #IP address associated with IF1
 # export IP2 = #IP address associated with IF2

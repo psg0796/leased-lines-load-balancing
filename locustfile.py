@@ -1,13 +1,13 @@
 from locust import HttpLocust, TaskSet, task
 
 class UserBehavior(TaskSet):
-    # @task(1)
-    # def index(self):
-    #     self.client.get("/")
-
     @task(1)
-    def search_a(self):
-        self.client.get("/docs/react/getting-started")
+    def index(self):
+        self.client.get("/")
+
+#    @task(1)
+#    def search_a(self):
+#        self.client.get("/docs/react/getting-started")
     
     # @task(1)
     # def search_absolute(self):
@@ -22,9 +22,9 @@ class UserBehavior(TaskSet):
     #     self.client.get("/wiki/QWERTY")
 
 class WebsiteUser(HttpLocust):
-    # host = 'http://youtube.com'
+    host = 'http://youtube.com'
     # host = 'http://google.com'
-    host = 'https://ant.design'
+    # host = 'https://ant.design'
     
     task_set = UserBehavior
     min_wait = 5000
